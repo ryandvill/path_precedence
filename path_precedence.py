@@ -13,7 +13,6 @@ TODO: compare the binaries (creation, version, etc)
 import sys, os
 from collections import defaultdict
 
-
 weighted_paths = []
 
 
@@ -30,6 +29,16 @@ for path in sorted(weighted_paths):
 
 
 for binary, binary_paths in sorted(binary_dict.items()):
+
     if len(binary_paths) > 1:
+
         print (binary, binary_paths)
+
+        last = binary_paths[0]
+        for path in binary_paths[1:]:
+
+            cmd = "diff %s %s" % (last, path)
+            result = os.system(cmd)
+            #print (result)
+            last = path
 
